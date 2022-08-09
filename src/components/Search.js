@@ -9,7 +9,6 @@ export default function Search() {
       <TextInput style={styles.input} placeholder="Enter City Name To Search" />
       </View>
       <Text style={styles.search_text}>search</Text>
-
     </View>
   );
 }

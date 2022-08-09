@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View ,ScrollView} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 export default function App() {
     let city='dhaka';
     // let time=new Date().toLocaleTimeString({hour12: true});
@@ -18,11 +19,20 @@ export default function App() {
     let sunset=100;
     let country='bangladesh';
     // styles
+    function fetchdata(){
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=London&appid=398e310b24f291b753fabdb60b31cc14')
+        .then(res=>res.json())
+        .then(data=>console.log(data))
+    }
+    fetchdata();
+
   return (
     <View style={styles.container}>
     <Text style={styles.title_display_text}>{city.charAt(0).toUpperCase()+city.slice(1)},{country.charAt(0).toUpperCase()+country.slice(1)}</Text>
     <View style={styles.display_main}>
-        <View style={styles.weather_icon}></View>
+        <View style={styles.weather_icon}>
+        <Ionicons name="sunny" size={80} color="orange" />
+        </View>
         <View>
             <Text style={styles.weather_info}>{weather.charAt(0).toUpperCase()+weather.slice(1)}</Text>
             <Text style={styles.weather_time}>{time}</Text>
@@ -72,9 +82,10 @@ export default function App() {
     </View>
     <View>
         <Text style={{ fontSize:20 }}>Today</Text>
-        <View style={styles.display_secondary}></View>
+        <View style={styles.display_secondary}>
+        <Feather name="wind" size={84} color="white" />
+        </View>
     </View>
-
     </View>
   );
 }
@@ -83,7 +94,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     // height:'80%',
-    width: '90%',
+    width: '100%',
     // backgroundColor:'skyblue',
     // backgroundColor: 'black',
     // alignItems: 'center',
@@ -110,9 +121,9 @@ const styles = StyleSheet.create({
     weather_icon:{
         width:100,
         height:100,
-        backgroundColor:'black',
-        // alignItems: 'center',
-        // justifyContent: 'center',
+        backgroundColor:'rgba(0,0,0,0.3)',
+        alignItems: 'center',
+        justifyContent: 'center',
         borderRadius:20,
         // padding:10,
         marginTop:50,
@@ -183,7 +194,7 @@ const styles = StyleSheet.create({
     display_secondary:{
         color :'white',
         width:'100%',
-        height:'40%',
+        height:100,
         textAlign:'center',
         // backgroundColor:'skyblue',
         borderRadius:20,
@@ -191,6 +202,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor:bgColor,
         // marginTop:10,
-        // justifyContent: 'center',
+        justifyContent: 'center',
     },
 });

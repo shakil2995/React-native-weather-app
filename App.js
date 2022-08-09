@@ -8,7 +8,9 @@ export default function App() {
     <View style={styles.container}>
     <Text style={styles.title}>Shakil's Forecast</Text>
     <Search/>
-    <Display/>
+    <ScrollView style={styles.display_scroll}>
+      <Display/>
+    </ScrollView>
     </View>
   );
 }
@@ -23,8 +25,11 @@ const styles = StyleSheet.create({
     // margin:5,
     // borderRadius:10,
   },
+  display_scroll:{
+    width:'100%',
+  },
   title:{
-    marginTop:20,
+    marginTop:40,
     fontSize:30,
     fontWeight:'bold',
     color:'#20232a',
