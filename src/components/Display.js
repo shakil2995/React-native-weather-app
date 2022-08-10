@@ -19,12 +19,15 @@ export default function App() {
     let sunset=100;
     let country='bangladesh';
     // styles
+    
     function fetchdata(){
         fetch('https://api.openweathermap.org/data/2.5/weather?q=London&appid=398e310b24f291b753fabdb60b31cc14')
         .then(res=>res.json())
-        .then(data=>console.log(data))
+        .then(data=>console.log('working'))
+        return data;
     }
-    fetchdata();
+    const data=fetchdata();
+    console.log(data);
 
   return (
     <View style={styles.container}>
