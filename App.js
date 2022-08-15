@@ -7,23 +7,34 @@ import React, { useState } from 'react';
 import {theme_light,theme_dark,container_theme_dark,container_theme_light} from './src/common/theme';
 global.dark_theme=true;
 // const [theme, setTheme] = useState(true);
-// onChangeText={newText => setText(newText)}
-
-
-
-
+// function changeTheme(){
+//   if(theme===true){
+//     setTheme(false);
+//   } else{
+//     setTheme(true);
+//   }
+//   console.log(theme);
+// }
+function changeTheme(){
+  if(dark_theme===true){
+    dark_theme=false;
+  }else{
+    dark_theme=true;
+  }
+  console.log(dark_theme);
+}
 
 export default function App() {
   return (
     <View style={[styles.container, (dark_theme==true) ? styles.container_theme_dark : styles.container_theme_light]}>
     <Text style={[styles.title, (dark_theme==true) ? styles.theme_dark : styles.theme_light]}>Shakil's Forecast</Text>
 
-    <TouchableOpacity 
-      style={[styles.button, (dark_theme==true) ? styles.theme_dark : styles.theme_light]} 
-      onPress={console.log('hello')}
+    {/* <TouchableOpacity 
+      style={[styles.theme_button, (dark_theme==true) ? styles.theme_dark : styles.theme_light]} 
+      onPress={changeTheme}
       activeOpacity={.85}>
-      <Text style={[styles.search_text, (dark_theme==true) ? styles.theme_dark : styles.theme_light]}>search</Text>
-    </TouchableOpacity>
+      <Text style={[(dark_theme==true) ? styles.theme_dark : styles.theme_light]}>{dark_theme==true ? 'Dark':'Light'}</Text>
+    </TouchableOpacity> */}
 
     <Search/>
     <ScrollView 
@@ -62,6 +73,16 @@ const styles = StyleSheet.create({
     fontSize:30,
     fontWeight:'bold',
     color:'#20232a',
+    marginBottom:10,
+  },
+  theme_button:{
+    width:100,
+    height:40,
+    backgroundColor:'#447AFF',
+    borderRadius:10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop:10,
     marginBottom:10,
   },
 
