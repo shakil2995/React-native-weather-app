@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View,TextInput, Touchable,TouchableOpacity  } from 'react-native';
+import {theme_light,theme_dark,container_theme_dark,container_theme_light,placeholderTextColor_light,placeholderTextColor_dark} from '../common/theme';
 let height=40;
     
 function fetchdata(){
@@ -11,28 +12,44 @@ function fetchdata(){
 }
 const data=fetchdata();
 console.log(data);
+
 function printText(){
-  console.log(global_light);
+  // console.log(dark_theme);
+}
+
+function changeTheme(){
+  console.log(dark_theme);
+  if(dark_theme===false){
+    dark_theme=true;
+  }else{
+    dark_theme=false;
+  }
 }
 
 export default function Search() {
   const [text, setText] = useState('');
   return (
     <View style={[styles.container]}>
-      <View style={[styles.search]}>
-      <TextInput style={[styles.input]} placeholder="Enter City Name To Search" 
+      <View style={[styles.search, (dark_theme==true) ? styles.theme_dark : styles.theme_light]}>
+      <TextInput style={[styles.input, (dark_theme==true) ? styles.theme_dark : styles.theme_light]} 
+        placeholderTextColor={(dark_theme==true) ? 'white' : 'black'}
+        placeholder="Enter City Name To Search" 
         onChangeText={newText => setText(newText)}
         defaultValue={text}
       />
       </View>
-      <TouchableOpacity style={[styles.button]} onPress={printText} activeOpacity={.85}>
-      <Text  style={[styles.search_text]}>search</Text>
+      <TouchableOpacity style={[styles.button, (dark_theme==true) ? styles.theme_dark : styles.theme_light]} onPress={printText} activeOpacity={.85}>
+      <Text style={[styles.search_text, (dark_theme==true) ? styles.theme_dark : styles.theme_light]}>search</Text>
       </TouchableOpacity>
       {/* <Text>{text}</Text> */}
     </View>
   );
 }
 const styles = StyleSheet.create({
+  theme_dark,
+  theme_light,
+  container_theme_dark,
+  container_theme_light,
   container: {
     // borderColor:'black',
     // borderWidth:1,

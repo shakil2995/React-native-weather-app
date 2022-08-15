@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import * as Theme from '../common/theme';
 export default function App(props) {
     let city='dhaka';
     // let time=new Date().toLocaleTimeString({hour12: true});
@@ -23,7 +24,7 @@ export default function App(props) {
 
   return (
     <View style={styles.container}>
-    <Text style={styles.title_display_text}>{city.charAt(0).toUpperCase()+city.slice(1)},{country.charAt(0).toUpperCase()+country.slice(1)}</Text>
+    <Text style={[styles.title_display_text , (dark_theme==true) ? styles.Theme.theme_dark : styles.Theme.theme_light]}>{city.charAt(0).toUpperCase()+city.slice(1)},{country.charAt(0).toUpperCase()+country.slice(1)}</Text>
     <View style={styles.display_main}>
         <View style={styles.weather_icon}>
         <Ionicons name="sunny" size={80} color="orange" />
@@ -76,7 +77,7 @@ export default function App(props) {
         </View>
     </View>
     <View>
-        <Text style={{ fontSize:20 }}>Today</Text>
+        <Text style={[styles.title_display_text , (dark_theme==true) ? styles.Theme.theme_dark : styles.Theme.theme_light]}>Today</Text>
         <View style={styles.display_secondary}>
         <Feather name="wind" size={84} color="white" />
         </View>
@@ -86,6 +87,7 @@ export default function App(props) {
 }
 let bgColor='#447AFF';
 const styles = StyleSheet.create({
+    Theme,
   container: {
     // flex: 1,
     // height:'80%',

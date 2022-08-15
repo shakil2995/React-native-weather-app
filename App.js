@@ -1,22 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View ,SafeAreaView, ScrollView} from 'react-native';
+import { StyleSheet, Text, View ,SafeAreaView, ScrollView, Touchable,TouchableOpacity} from 'react-native';
 import Weather from './src/components/Weather';
 import Search from './src/components/Search';
 import Display from './src/components/Display';
-global.global_light={
-  backgroundColor:'white',
-  color:'black',
-  borderColor:'black',
-};
-global.global_dark={
-  backgroundColor:'black',
-  color:'white',
-  borderColor:'white',
-};
+import React, { useState } from 'react';
+import {theme_light,theme_dark,container_theme_dark,container_theme_light} from './src/common/theme';
+global.dark_theme=true;
+// const [theme, setTheme] = useState(true);
+// onChangeText={newText => setText(newText)}
+
+
+
+
+
 export default function App() {
   return (
-    <View style={[styles.container,styles.dark]}>
-    <Text style={[styles.title,styles.dark]}>Shakil's Forecast</Text>
+    <View style={[styles.container, (dark_theme==true) ? styles.container_theme_dark : styles.container_theme_light]}>
+    <Text style={[styles.title, (dark_theme==true) ? styles.theme_dark : styles.theme_light]}>Shakil's Forecast</Text>
+
+    <TouchableOpacity 
+      style={[styles.button, (dark_theme==true) ? styles.theme_dark : styles.theme_light]} 
+      onPress={console.log('hello')}
+      activeOpacity={.85}>
+      <Text style={[styles.search_text, (dark_theme==true) ? styles.theme_dark : styles.theme_light]}>search</Text>
+    </TouchableOpacity>
+
     <Search/>
     <ScrollView 
     showsVerticalScrollIndicator ={false}
@@ -32,6 +40,10 @@ export default function App() {
   );
 }
 const styles = StyleSheet.create({
+  theme_dark,
+  theme_light,
+  container_theme_dark,
+  container_theme_light,
   container: {
     backgroundColor:'rgba(255, 242, 242,1)',
     flex: 1,
@@ -52,15 +64,5 @@ const styles = StyleSheet.create({
     color:'#20232a',
     marginBottom:10,
   },
-  light:{
-    backgroundColor:global_light.backgroundColor,
-    color:global_light.color,
-    borderColor:global_light.borderColor,
-  },
-  dark:{
-    backgroundColor:global_dark.backgroundColor,
-    color:global_dark.color,
-    borderColor:global_dark.borderColor,
-  }
 
 });
