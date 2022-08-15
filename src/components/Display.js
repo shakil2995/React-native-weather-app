@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-export default function App() {
+export default function App(props) {
     let city='dhaka';
     // let time=new Date().toLocaleTimeString({hour12: true});
     let time='Sunday, 02 Oct'
@@ -19,15 +19,7 @@ export default function App() {
     let sunset=100;
     let country='bangladesh';
     // styles
-    
-    function fetchdata(){
-        fetch('https://api.openweathermap.org/data/2.5/weather?q=London&appid=398e310b24f291b753fabdb60b31cc14')
-        .then(res=>res.json())
-        .then(data=>console.log('working'))
-        return data;
-    }
-    const data=fetchdata();
-    console.log(data);
+
 
   return (
     <View style={styles.container}>
