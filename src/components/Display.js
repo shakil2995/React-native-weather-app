@@ -1,44 +1,76 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View ,ScrollView,FlatList} from 'react-native';
+import { StyleSheet, Text, View ,ScrollView,FlatList,Image} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
 import * as Theme from '../common/theme';
 export default function App(props) {
-    console.log(typeof(props));
-    // console.log(props.weather.sys.country);
-    // let city=props.weather.name;
-    // let time=new Date().toLocaleTimeString({hour12: true});
-    // // let time=props.weather.time;
-    // let weather=props.weather.weather;
-    // let temp=props.weather.main.temp;
-    // let temp_min=props.weather.main.temp_min;
-    // let temp_max=props.weather.main.temp_max;
-    // let feelsLike=props.weather.main.feels_like;
-    // let humidity=props.weather.main.humidity;
-    // let pressure=props.weather.main.pressure;
-    // let wind=10;
-    // let indexUv=10;
-    // let sunrise=10;
-    // let sunset=10;
-    // let country=props.weather.sys.country;
+// get cuttent time with day
+let date = new Date();
+let day = date.getDay();
+let day_name = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+let day_name_current = day_name[day];
+let month = date.getMonth();
+let month_name = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+let month_name_current = month_name[month];
+let date_current = date.getDate();
+let time_current_day = day_name_current + ", " + date_current + " " + month_name_current + " ";
+// console.log(time_current_day);
+    let city;
+    let time;
+    let weather;
+    let temp;
+    let temp_min;
+    let temp_max;
+    let feelsLike;
+    let humidity;
+    let pressure;
+    let wind;
+    let indexUv;
+    let sunrise;
+    let sunset;
+    let country;
+    let weather_icon;
+    let icon_link;
 
-
-    let city='dhaka';
-    let time='Monday, 15 Aug';
-    let weather='haze';
-    let temp=10;
-    let temp_min=40;
-    let temp_max=50;
-    let feelsLike=60;
-    let humidity=70;
-    let pressure=80;
-    let wind=90;
-    let indexUv=100;
-    let sunrise=110;
-    let sunset=120;
-    let country='Bangladesh';
+    if (props==null) {
+        city='dhaka';
+        time='Monday, 15 Aug';
+        weather='haze';
+        temp=10;
+        temp_min=40;
+        temp_max=50;
+        feelsLike=60;
+        humidity=70;
+        pressure=80;
+        wind=90;
+        indexUv=100;
+        sunrise=110;
+        sunset=120;
+        country='Bangladesh';
+        weather_icon='50n';
+        icon_link=`http://openweathermap.org/img/wn/${weather_icon}@2x.png`
+    } else{
+        console.log('Not Undefined and Not Null');
+        console.log(typeof(props));
+        console.log(props.weather.sys.country);
+        city=props.weather.name;
+        time=time_current_day;
+        weather=props.weather.weather[0].main;
+        temp=props.weather.main.temp;
+        temp_min=props.weather.main.temp_min;
+        temp_max=props.weather.main.temp_max;
+        feelsLike=props.weather.main.feels_like;
+        humidity=props.weather.main.humidity;
+        pressure=props.weather.main.pressure;
+        wind=props.weather.wind.speed;
+        country=props.weather.sys.country;
+        weather_icon=props.weather.weather[0].icon;
+        icon_link=`http://openweathermap.org/img/wn/${weather_icon}@2x.png`
+        console.log(icon_link);
+    }
 
   return (
     <View style={styles.container}>
@@ -47,7 +79,8 @@ export default function App(props) {
     </Text>
     <View style={styles.display_main}>
         <View style={styles.weather_icon}>
-        <Ionicons name="sunny" size={80} color="orange" />
+        {/* <Ionicons name="sunny" size={80} color="orange" /> */}
+        <Image source={{uri:`http://openweathermap.org/img/wn/${weather_icon}@2x.png`, width:120,height:120 }}/>
         </View>
         <View>
             <Text style={styles.weather_info}>
@@ -82,11 +115,11 @@ export default function App(props) {
         <View style={styles.bottom_card_container}>
             <View style={styles.bottom_card1}>
                 <View style={styles.small_card_icon}>
-                <Feather name="sun" size={24} color="white" />
+                <MaterialCommunityIcons name="car-brake-low-pressure" size={24} color="white" />
                 </View>
                 <View style={styles.small_card_text}>
-                    <Text style={styles.small_card_text}>Index Uv</Text>
-                    <Text style={styles.small_card_text}>{indexUv}</Text>
+                    <Text style={styles.small_card_text}>Pressure</Text>
+                    <Text style={styles.small_card_text}>{pressure}</Text>
                 </View>
             </View>
             <View style={styles.bottom_card2}>
@@ -103,9 +136,39 @@ export default function App(props) {
     <View>
         <Text style={[styles.title_display_text , (dark_theme==true) ? styles.Theme.theme_dark : styles.Theme.theme_light]}>Today</Text>
         <View style={styles.display_secondary}>
-        <Feather name="wind" size={84} color="white" />
+        {/* <Feather name="wind" size={84} color="white" /> */}
+
+
+        <View style={styles.bottom_card_container2}>
+
+
+            <View style={styles.bottom_card3}>
+
+                <View style={styles.small_card_icon}>
+            <FontAwesome5 name="temperature-low" size={24} color="white" />
+            </View>
+                <View style={styles.small_card_text}>
+                    <Text style={styles.small_card_text}>Min temp</Text>
+                    <Text style={styles.small_card_text}>{temp_min}°C</Text>
+                </View>
+            </View>
+
+
+            <View style={styles.bottom_card4}>
+            <View style={styles.small_card_icon}>
+                <FontAwesome5 name="temperature-high" size={24} color="white" />
+                </View>
+                <View style={styles.small_card_text}>
+                    <Text style={styles.small_card_text}>Max temp</Text>
+                    <Text style={styles.small_card_text}>{temp_max}°C</Text>
+                </View>
+            </View>
+
+
+        </View>
         </View>
     </View>
+    {/* <Image source={{uri:`http://openweathermap.org/img/wn/${weather_icon}@2x.png`, width:200,height:200 }}/> */}
     </View>
   );
 }
@@ -142,7 +205,9 @@ const styles = StyleSheet.create({
     weather_icon:{
         width:100,
         height:100,
-        backgroundColor:'rgba(0,0,0,0.3)',
+        // backgroundColor:'rgba(0,0,0,0.3)',
+        // backgroundColor:'rgba(255,150,20,1)',
+        backgroundColor:'orange',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius:20,
@@ -219,10 +284,48 @@ const styles = StyleSheet.create({
         textAlign:'center',
         // backgroundColor:'skyblue',
         borderRadius:20,
-        marginBottom:10,
+        marginBottom:30,
         alignItems: 'center',
         backgroundColor:bgColor,
         // marginTop:10,
         justifyContent: 'center',
+    },
+    bottom_card3:{
+        // flex:1,
+        flexDirection:'row',
+        backgroundColor:bgColor,
+        borderRightWidth:1,
+        borderColor:'skyblue',
+        height:'100%',
+        width:'45%',
+        // borderBottomLeftRadius:20,
+        // borderRadius:50,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    bottom_card4:{
+        flexDirection:'row',
+        backgroundColor:bgColor,
+        borderLeftWidth:1,
+        borderColor:'skyblue',
+        height:'100%',
+        width:'45%',
+        // borderBottomRightRadius:20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        // borderRadius:50,
+    },
+    bottom_card_container2:{
+        // flex:1,
+        flexDirection:'row',
+        borderColor:bgColor,
+        // borderTopColor:'skyblue',
+        borderWidth:1,
+        // marginTop:40,
+        borderRadius:20,
+        height:80,
+        width:'100%',
+        // alignItems: 'center',
+        // justifyContent: 'center',
     },
 });
