@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View ,SafeAreaView, ScrollView, Touchable,TouchableOpacity} from 'react-native';
-import Weather from './src/components/Weather';
+// import Weather from './src/components/Weather';
 import Search from './src/components/Search';
 import Display from './src/components/Display';
 import React, { useState } from 'react';
@@ -37,16 +37,7 @@ export default function App() {
     </TouchableOpacity> */}
 
     <Search/>
-    <ScrollView 
-    showsVerticalScrollIndicator ={false}
-    showsHorizontalScrollIndicator={false} 
-    style={styles.display_scroll}>
-      <Display
-      // city='london'
-      // time='Sunday, 02 Oct'
-      // weather='sunny'
-      />
-    </ScrollView>
+
     </View>
   );
 }
@@ -64,9 +55,6 @@ const styles = StyleSheet.create({
     padding:10,
     // margin:5,
     // borderRadius:10,
-  },
-  display_scroll:{
-    width:'100%',
   },
   title:{
     marginTop:40,

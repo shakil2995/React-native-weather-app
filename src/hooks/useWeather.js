@@ -1,5 +1,5 @@
 import { useState } from "react";
-import weather from '../api/weatherApi';
+// import weather from '../api/weatherApi';
 export default()=>{
 const [weather,setWeather]= useState({
     data:null,

@@ -6,21 +6,20 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import * as Theme from '../common/theme';
 export default function App(props) {
-    let city='dhaka';
+    let city=props.weather.city;
     // let time=new Date().toLocaleTimeString({hour12: true});
-    let time='Sunday, 02 Oct'
-    let weather='sunny';
-    let temp=30;
-    let feelsLike=36;
-    let humidity=50;
-    let pressure=100;
-    let wind=10;
-    let indexUv=0;
-    let sunrise=100;
-    let sunset=100;
-    let country='bangladesh';
+    let time=props.weather.time;
+    let weather=props.weather.weather;
+    let temp=props.weather.temp;
+    let feelsLike=props.weather.feelsLike;
+    let humidity=props.weather.humidity;
+    let pressure=props.weather.pressure;
+    let wind=props.weather.wind;
+    let indexUv=props.weather.indexUv;
+    let sunrise=props.weather.sunrise;
+    let sunset=props.weather.sunset;
+    let country=props.weather.country;
     // styles
-
 
   return (
     <View style={styles.container}>
