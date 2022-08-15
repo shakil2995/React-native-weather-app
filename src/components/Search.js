@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     color:'white',
   },
   search:{
-    width:'70%',
+    width:'75%',
     height:height,
     borderRadius:20,
     borderTopRightRadius:0,

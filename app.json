@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "calculator",
-    "slug": "calculator",
+    "name": "Weather App",
+    "slug": "https://github.com/shakil2995",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,6 +21,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.github2995.weatherapp",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
