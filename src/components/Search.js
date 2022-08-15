@@ -1,38 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Display from '../components/Display';
 import { StyleSheet, Text, View,TextInput, Touchable,TouchableOpacity,ScrollView, } from 'react-native';
 import {theme_light,theme_dark,container_theme_dark,container_theme_light,placeholderTextColor_light,placeholderTextColor_dark} from '../common/theme';
 let height=40;
 // const [weatherData, setWeatherData] = useState('');
-let weather={
-  city:'dhaka',
-  time:'Sunday, 02 Oct',
-  weather:'sunny',
-  temp:30,
-  feelsLike:36,
-  humidity:50,
-  pressure:100,
-  wind:10,
-  indexUv:0,
-  sunrise:100,
-  sunset:100,
-  country:'bangladesh',
-}
-function fetchdata(city){
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=398e310b24f291b753fabdb60b31cc14`)
-  .then(res=>res.json())
-  // .then(data=>console.log(data))
-  // console.log(city);
-  return data;
-}
-const data=fetchdata('london');
-// console.log(data);
-
-function printText(){
-  // console.log(dark_theme);
-}
-
+// let weather={
+//   city:'dhaka',
+//   time:'Sunday, 02 Oct',
+//   weather:'sunny',
+//   temp:30,
+//   feelsLike:36,
+//   humidity:50,
+//   pressure:100,
+//   wind:10,
+//   indexUv:0,
+//   sunrise:100,
+//   sunset:100,
+//   country:'bangladesh',
+// }
 function changeTheme(){
   console.log(dark_theme);
   if(dark_theme===false){
@@ -43,7 +29,36 @@ function changeTheme(){
 }
 
 export default function Search() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState('Dhaka');
+  const [data, setData] = useState('');
+
+  function fetchdata(city = 'dhaka') {
+    let unit = "metric";
+    if(city && 'dhaka')
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=398e310b24f291b753fabdb60b31cc14`)
+    .then(res=>res.json())
+    .then(data=>setData(data))
+    // console.log(data);
+    // let weather={
+    //   city:data.city,
+    //   time:'Sunday, 02 Oct',
+    //   weather:'sunny',
+    //   temp:30,
+    //   feelsLike:36,
+    //   humidity:50,
+    //   pressure:100,
+    //   wind:10,
+    //   indexUv:0,
+    //   sunrise:100,
+    //   sunset:100,
+    //   country:'bangladesh',
+    // }
+    // return weather;
+  };
+  useEffect(() => {
+    fetchdata('dhaka');
+  }, []);
+
   return (
     <ScrollView
     showsVerticalScrollIndicator ={false}
@@ -58,12 +73,12 @@ export default function Search() {
         defaultValue={text}
       />
       </View>
-      <TouchableOpacity style={[styles.button, (dark_theme==true) ? styles.theme_dark : styles.theme_light]} onPress={printText} activeOpacity={.85}>
+      <TouchableOpacity style={[styles.button, (dark_theme==true) ? styles.theme_dark : styles.theme_light]} onPress={() => fetchdata(text)} activeOpacity={.85}>
       <Text style={[styles.search_text, (dark_theme==true) ? styles.theme_dark : styles.theme_light]}>search</Text>
       </TouchableOpacity>
       {/* <Text>{text}</Text> */}
     </View>
-      <Display weather={weather}/>
+      <Display weather={data}/>
    </ScrollView>
   );
   

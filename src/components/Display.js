@@ -1,39 +1,64 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View ,ScrollView} from 'react-native';
+import { StyleSheet, Text, View ,ScrollView,FlatList} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import * as Theme from '../common/theme';
 export default function App(props) {
-    let city=props.weather.city;
+    console.log(typeof(props));
+    // console.log(props.weather.sys.country);
+    // let city=props.weather.name;
     // let time=new Date().toLocaleTimeString({hour12: true});
-    let time=props.weather.time;
-    let weather=props.weather.weather;
-    let temp=props.weather.temp;
-    let feelsLike=props.weather.feelsLike;
-    let humidity=props.weather.humidity;
-    let pressure=props.weather.pressure;
-    let wind=props.weather.wind;
-    let indexUv=props.weather.indexUv;
-    let sunrise=props.weather.sunrise;
-    let sunset=props.weather.sunset;
-    let country=props.weather.country;
-    // styles
+    // // let time=props.weather.time;
+    // let weather=props.weather.weather;
+    // let temp=props.weather.main.temp;
+    // let temp_min=props.weather.main.temp_min;
+    // let temp_max=props.weather.main.temp_max;
+    // let feelsLike=props.weather.main.feels_like;
+    // let humidity=props.weather.main.humidity;
+    // let pressure=props.weather.main.pressure;
+    // let wind=10;
+    // let indexUv=10;
+    // let sunrise=10;
+    // let sunset=10;
+    // let country=props.weather.sys.country;
+
+
+    let city='dhaka';
+    let time='Monday, 15 Aug';
+    let weather='haze';
+    let temp=10;
+    let temp_min=40;
+    let temp_max=50;
+    let feelsLike=60;
+    let humidity=70;
+    let pressure=80;
+    let wind=90;
+    let indexUv=100;
+    let sunrise=110;
+    let sunset=120;
+    let country='Bangladesh';
 
   return (
     <View style={styles.container}>
-    <Text style={[styles.title_display_text , (dark_theme==true) ? styles.Theme.theme_dark : styles.Theme.theme_light]}>{city.charAt(0).toUpperCase()+city.slice(1)},{country.charAt(0).toUpperCase()+country.slice(1)}</Text>
+    <Text style={[styles.title_display_text , (dark_theme==true) ? styles.Theme.theme_dark : styles.Theme.theme_light]}>
+    { city.charAt(0).toUpperCase()+city.slice(1)},{country.charAt(0).toUpperCase()+country.slice(1)}
+    </Text>
     <View style={styles.display_main}>
         <View style={styles.weather_icon}>
         <Ionicons name="sunny" size={80} color="orange" />
         </View>
         <View>
-            <Text style={styles.weather_info}>{weather.charAt(0).toUpperCase()+weather.slice(1)}</Text>
+            <Text style={styles.weather_info}>
+            {weather.charAt(0).toUpperCase()+weather.slice(1)}
+            </Text>
             <Text style={styles.weather_time}>{time}</Text>
             <Text style={styles.temp_text}>{temp}°C</Text>
         </View>
-{/* Bottom cards  */}
+
+
+
         <View style={styles.bottom_card_container}>
             <View style={styles.bottom_card1}>
                 <View style={styles.small_card_icon}>
