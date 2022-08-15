@@ -27,7 +27,7 @@ function changeTheme(){
 export default function App() {
   return (
     <View style={[styles.container, (dark_theme==true) ? styles.container_theme_dark : styles.container_theme_light]}>
-    <Text style={[styles.title, (dark_theme==true) ? styles.theme_dark : styles.theme_light]}>Shakil's Forecast</Text>
+    <Text style={[styles.title, (dark_theme==true) ? styles.theme_dark : styles.theme_light]}>Shakil's Weather</Text>
 
     {/* <TouchableOpacity 
       style={[styles.theme_button, (dark_theme==true) ? styles.theme_dark : styles.theme_light]} 
