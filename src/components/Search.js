@@ -4,29 +4,14 @@ import Display from '../components/Display';
 import { StyleSheet, Text, View,TextInput, Touchable,TouchableOpacity,ScrollView, } from 'react-native';
 import {theme_light,theme_dark,container_theme_dark,container_theme_light,placeholderTextColor_light,placeholderTextColor_dark} from '../common/theme';
 let height=40;
-// const [weatherData, setWeatherData] = useState('');
-// let weather={
-//   city:'dhaka',
-//   time:'Sunday, 02 Oct',
-//   weather:'sunny',
-//   temp:30,
-//   feelsLike:36,
-//   humidity:50,
-//   pressure:100,
-//   wind:10,
-//   indexUv:0,
-//   sunrise:100,
-//   sunset:100,
-//   country:'bangladesh',
+// function changeTheme(){
+//   console.log(dark_theme);
+//   if(dark_theme===false){
+//     dark_theme=true;
+//   }else{
+//     dark_theme=false;
+//   }
 // }
-function changeTheme(){
-  console.log(dark_theme);
-  if(dark_theme===false){
-    dark_theme=true;
-  }else{
-    dark_theme=false;
-  }
-}
 
 export default function Search() {
   const [text, setText] = useState('Dhaka');
@@ -38,22 +23,6 @@ export default function Search() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=398e310b24f291b753fabdb60b31cc14`)
     .then(res=>res.json())
     .then(data=>setData(data))
-    // console.log(data);
-    // let weather={
-    //   city:data.city,
-    //   time:'Sunday, 02 Oct',
-    //   weather:'sunny',
-    //   temp:30,
-    //   feelsLike:36,
-    //   humidity:50,
-    //   pressure:100,
-    //   wind:10,
-    //   indexUv:0,
-    //   sunrise:100,
-    //   sunset:100,
-    //   country:'bangladesh',
-    // }
-    // return weather;
   };
   useEffect(() => {
     fetchdata('dhaka');

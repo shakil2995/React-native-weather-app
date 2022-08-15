@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Weather App",
-    "slug": "https://github.com/shakil2995",
+    "slug": "Weather App",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -35,7 +35,7 @@ let time_current_day = day_name_current + ", " + date_current + " " + month_name
     let weather_icon;
     let icon_link;
 
-    if (props==null) {
+    if (props.weather.cod!=200){
         city='dhaka';
         time='Monday, 15 Aug';
         weather='haze';
@@ -52,10 +52,13 @@ let time_current_day = day_name_current + ", " + date_current + " " + month_name
         country='Bangladesh';
         weather_icon='50n';
         icon_link=`http://openweathermap.org/img/wn/${weather_icon}@2x.png`
+        console.log(typeof(props.cod));
+        console.log('if');
     } else{
-        console.log('Not Undefined and Not Null');
-        console.log(typeof(props));
-        console.log(props.weather.sys.country);
+        console.log(props.weather.cod);
+        // console.log('Not Undefined and Not Null');
+        // console.log(typeof(props));
+        // console.log(props.weather.sys.country);
         city=props.weather.name;
         time=time_current_day;
         weather=props.weather.weather[0].main;
@@ -69,7 +72,7 @@ let time_current_day = day_name_current + ", " + date_current + " " + month_name
         country=props.weather.sys.country;
         weather_icon=props.weather.weather[0].icon;
         icon_link=`http://openweathermap.org/img/wn/${weather_icon}@2x.png`
-        console.log(icon_link);
+        // console.log(icon_link);
     }
 
   return (
